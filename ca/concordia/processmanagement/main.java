@@ -3,7 +3,7 @@ package ca.concordia.processmanagement;
 public class main {
     public static void main(String[] args) {
         try {
-            System.out.println("Scenario #1 \n");
+            System.out.println("\nScenario #1");
             ProcessControl test1 = new ProcessControl();
             int pid = test1.createProcess();
             System.out.println("PID of newly created process is: " + pid);
