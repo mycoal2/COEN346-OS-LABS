@@ -1,0 +1,6 @@
+ca/concordia/processmanagement/main.class
+ca/concordia/processmanagement/Operation.class
+ca/concordia/processmanagement/PCB.class
+ca/concordia/processmanagement/PIDManager.class
+ca/concordia/processmanagement/ProcessControl.class
+ca/concordia/processmanagement/Driver.class

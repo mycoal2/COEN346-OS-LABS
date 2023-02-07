@@ -3,7 +3,7 @@ package ca.concordia.processmanagement;
 public class PCB {
     int PID;
     boolean processStatus;
-
+    //setters and getters
     public int getPID() {
         return PID;
     }
