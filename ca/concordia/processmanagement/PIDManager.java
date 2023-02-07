@@ -9,7 +9,7 @@ public class PIDManager {
 
     public void allocateMap() throws Exception{     //initialize all pid to be free. 0 is free. 1 is taken.
         for(int i = 0; i < 201; i++) {
-            arr[i] = 0;                             
+            arr[i] = 0;
         }
     }
 

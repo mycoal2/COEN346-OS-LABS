@@ -23,12 +23,14 @@ public class ProcessControl implements Operation {
 
     public void terminateProcess(int pid) throws Exception {
         PCB temp = new PCB();
-        Manager.releasePID(pid);                        //free the pid
         for(int i = 0; i < queue.size(); i++) {         //this for loop search for the process with the coressponding pid
             temp = queue.remove();                      //since its a queue, you can only look at the first one.
-            if (temp.getPID() == pid)
+            if (temp.getPID() == pid) {
+                Manager.releasePID(pid);                //free the pid
                 return;
+            }
             queue.add(temp);                            //if its not the correct pid, re-add the pid to the queue.
         }
+        int  a = 1/0;                                   //if the code reaches here, it means that pid was not found so we it throws an exception.
     }
 }
