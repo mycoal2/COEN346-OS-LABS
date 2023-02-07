@@ -1,4 +1,4 @@
-package ca.concordia.processmanagement;
+import ca.concordia.processmanagement.*;
 
 public class Driver {
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class Driver {
         try {
             System.out.println("\nScenario #2");
             ProcessControl test2 = new ProcessControl();
-            for(int i = 0; i < 200; i++) {;
+            for(int i = 0; i < 200; i++) {
                 test2.createProcess();                      //This will create 200 process with different PIDs. so 300 to 499
             }
             System.out.println("PID of newly created process is: " + test2.createProcess());   //This create the process with pid 500
@@ -29,7 +29,7 @@ public class Driver {
         try {
             System.out.println("\nScenario #3");
             ProcessControl test3 = new ProcessControl();
-            for(int i = 0; i < 200; i++) {;
+            for(int i = 0; i < 200; i++) {
                 test3.createProcess();
             }
             System.out.println("PID of newly created process is: " + test3.createProcess());    //This create the process with pid 500
