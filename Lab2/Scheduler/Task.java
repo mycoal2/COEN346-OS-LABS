@@ -33,7 +33,7 @@ package Scheduler;
          this.name = name;
          this.priority = priority;
          this.burst = burst;
- 
+
          this.tid = tidAllocator.getAndIncrement();
      }
  

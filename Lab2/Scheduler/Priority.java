@@ -1,5 +1,14 @@
 package Scheduler;
 
-public class Priority {
-    
+public class Priority implements Algorithm {
+    public void schedule() {
+
+    }
+
+    @Override
+    public Task pickNextTask() {
+        return null;
+    }
+
+
 }
