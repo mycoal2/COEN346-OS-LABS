@@ -23,16 +23,16 @@ public class FCFS implements Algorithm {
         while(queue.size() > 0) {
             Task temp = queue.remove(0);
 
-            if(clock1.clock <= temp.getPriority()) {
+            if(clock1.clock <= temp.getArrivalTime()) {
                 try {
-                    Thread.sleep((temp.getPriority() - clock1.clock) * 1000);
+                    Thread.sleep((temp.getArrivalTime() - clock1.clock) * 1000);
                 } catch (Exception e) {
                     System.out.println("error1");
                 }
             }
             System.out.println(temp.getName() + " has started");
             try {
-                sleep(temp.getBurst() * 1000 + 1);
+                sleep(temp.getBurst() * 1000 );
             } catch (Exception e) {
                 System.out.println("error burst");
             }
@@ -53,7 +53,7 @@ public class FCFS implements Algorithm {
             for (int j = i + 1; j < arr.length; j++) {
                 // Checking elements
                 Task temp = null;
-                if (arr[j].getPriority() < arr[i].getPriority() ) {
+                if (arr[j].getArrivalTime() < arr[i].getArrivalTime() ) {
  
                     // Swapping
                     temp = arr[i];

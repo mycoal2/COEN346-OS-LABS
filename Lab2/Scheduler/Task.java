@@ -23,19 +23,28 @@ package Scheduler;
      private int tid;
      private int priority;
      private int burst;
+     private int arrivalTime;
  
      /**
       * We use an atomic integer to assign each task a unique task id.
       */
      private static AtomicInteger tidAllocator = new AtomicInteger();
  
-     public Task(String name, int priority, int burst) {
+     public Task(String name, int arrivalTime, int burst) {
          this.name = name;
-         this.priority = priority;
+         this.arrivalTime = arrivalTime;
          this.burst = burst;
 
          this.tid = tidAllocator.getAndIncrement();
      }
+     public Task(String name, int arrivalTime, int burst, int priority) {
+        this.name = name;
+        this.priority = priority;
+        this.burst = burst;
+        this.arrivalTime = arrivalTime;
+
+        this.tid = tidAllocator.getAndIncrement();
+    }
  
      /**
       * Appropriate getters
@@ -55,7 +64,9 @@ package Scheduler;
      public int getBurst() {
          return burst;
      }
- 
+     public int getArrivalTime() {
+        return arrivalTime;
+    }
      /**
       * Appropriate setters
       */
@@ -70,7 +81,12 @@ package Scheduler;
  
          return burst;
      }
- 
+
+     public int setArrivalTime(int arrivalTime) {
+        this.arrivalTime = arrivalTime;
+
+        return arrivalTime;
+    }
      /**
       * We override equals() so we can use a
       * Task object in Java collection classes.
@@ -94,7 +110,8 @@ package Scheduler;
          return
              "Name: " + name + "\n" + 
              "Tid: " + tid + "\n" + 
-             "Priority: " + priority + "\n" + 
-             "Burst: " + burst + "\n";
+             "Arrival Time: " + arrivalTime + "\n" +
+             "Burst: " + burst + "\n" +
+             "Priority: " + priority + "\n";
      }
  }
