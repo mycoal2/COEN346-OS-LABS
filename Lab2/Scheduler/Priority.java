@@ -16,20 +16,9 @@ public class Priority implements Algorithm {
 
     public void schedule() {
         clock1.start();
+
         while(queue.size() > 0 || readyQueue.size() > 0) {
             Task temp = pickNextTask();
-            try {
-                Thread.sleep((temp.getPriority() - clock1.clock) * 1000);
-            } catch (Exception e) {
-                System.out.println("error1");
-            }
-            if(clock1.clock <= temp.getPriority()) {
-                try {
-                    Thread.sleep((temp.getPriority() - clock1.clock) * 1000);
-                } catch (Exception e) {
-                    System.out.println("error1");
-                }
-            }
             System.out.println(temp.getName() + " has started");
             try {
                 sleep(temp.getBurst() * 1000 + 1);
@@ -42,22 +31,21 @@ public class Priority implements Algorithm {
         clock1.stopClock();
     }
 
-    public void addtoReadyQueue() {
-        
-    }
-
     @Override
     public Task pickNextTask() {
-        for(int i = 0; i<queue.size();i++) {
-            if(queue.get(i).getPriority() <= clock1.clock) {
-                readyQueue.add(queue.remove(i));
+        while(readyQueue.size()<=0) {
+            for(int i = 0; i<queue.size();i++) {
+                if(queue.get(i).getArrivalTime() <= clock1.clock) {
+                    readyQueue.add(queue.remove(i));
+                    i--;
+                }
             }
         }
-
         int index = 0;
         int highpriority = -1;
         for(int i = 0; i<readyQueue.size();i++) {
             if(readyQueue.get(i).getPriority() > highpriority) {
+                highpriority = readyQueue.get(i).getPriority();
                 index = i;
             }
         }

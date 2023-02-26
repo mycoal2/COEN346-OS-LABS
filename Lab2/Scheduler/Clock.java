@@ -3,7 +3,9 @@ package Scheduler;
 public class Clock extends Thread {
     public int clock = 0;
     boolean exit = true;
+    
     public void run() {
+        System.out.println("Clock has started:\n" + clock);
         while(exit) {
             try{
                 sleep(1000);

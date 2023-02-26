@@ -34,7 +34,7 @@ package Scheduler;
          this.name = name;
          this.arrivalTime = arrivalTime;
          this.burst = burst;
-
+         this.priority = 0;
          this.tid = tidAllocator.getAndIncrement();
      }
      public Task(String name, int arrivalTime, int burst, int priority) {

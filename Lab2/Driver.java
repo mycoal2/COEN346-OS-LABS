@@ -41,7 +41,7 @@ public class Driver {
                 // scheduler = new SJF(queue);
                 break;
             case "PRI":
-                // scheduler = new Priority(queue);
+                scheduler = new Priority(queue);
                 break;
             case "RR":
                 // scheduler = new RR(queue);
