@@ -16,3 +16,8 @@ Lab2/out/production/Lab2/Lab2.iml
 Lab2/out/production/Lab2/.idea/misc.xml
 Lab2/out/production/Lab2/.idea/modules.xml
 Lab2/out/production/Lab2/.idea/vcs.xml
+Lab2/Driver.class
+Lab2/Scheduler/Algorithm.class
+Lab2/Scheduler/Clock.class
+Lab2/Scheduler/FCFS.class
+Lab2/Scheduler/Task.class

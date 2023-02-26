@@ -8,9 +8,8 @@ public class Driver {
     int Min_prio = 1;
     int Max_prio = 10;
     public static void main(String[] args) throws IOException {
-       // Clock obj = new Clock();
-     //   obj.start();
-     /* 
+        // Clock obj = new Clock();
+        // obj.start();
         if (args.length != 2) {
             System.err.println("Usage: java Driver <algorithm> <schedule>");
             System.exit(0);
@@ -59,10 +58,9 @@ public class Driver {
         scheduler.schedule();
 
 
-*/
 
-        FCFS obj1 = new FCFS();
-        obj1.schedule();
+        // FCFS obj1 = new FCFS();
+        // obj1.schedule();
 
 
     }
