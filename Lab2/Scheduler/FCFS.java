@@ -1,29 +1,27 @@
 package Scheduler;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
-
 import static java.lang.Thread.sleep;
 
 public class FCFS implements Algorithm {
-    Queue<Task> queue = new LinkedList<>();
+    List<Task> queue = new ArrayList<Task>();
     public FCFS() {
-        Task a = new Task("T1", 0, 2);
-        Task b = new Task("T2", 5, 3);
-        Task c = new Task("T3", 6, 4);
-        Task d = new Task("T4", 10, 7);
-        queue.add(a);
-        queue.add(b);
-        queue.add(c);
-        queue.add(d);
     }
+
+    public FCFS(List<Task> q) {
+        queue=q;
+        pickNextTask();
+    }
+
     @Override
     public void schedule() {
-        int time = 0;
         Clock clock1 = new Clock();
         clock1.start();
-        //System.out.println(queue.size());
         while(queue.size() > 0) {
-            Task temp = queue.remove();
+            Task temp = queue.remove(0);
 
             if(clock1.clock <= temp.getPriority()) {
                 try {
@@ -34,18 +32,41 @@ public class FCFS implements Algorithm {
             }
             System.out.println(temp.getName() + " has started");
             try {
-                sleep(temp.getBurst() * 1000);
+                sleep(temp.getBurst() * 1000 + 1);
             } catch (Exception e) {
-                System.out.println("error");
+                System.out.println("error burst");
             }
-            System.out.println("This task has finished");
+
+            System.out.println(temp.getName() + " has finished");
 
         }
-
+        System.out.println("All Tasks are finished");
+        clock1.stopClock();
     }
 
     @Override
     public Task pickNextTask() {
+        Task[] arr = queue.toArray(new Task[0]);
+        
+        for (int i = 0; i < arr.length; i++) {
+            // Inner nested loop pointing 1 index ahead
+            for (int j = i + 1; j < arr.length; j++) {
+                // Checking elements
+                Task temp = null;
+                if (arr[j].getPriority() < arr[i].getPriority() ) {
+ 
+                    // Swapping
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+            // Printing sorted array elements
+            System.out.println(arr[i] + " ");
+        }
+
+        queue = new ArrayList<Task>(Arrays.asList(arr));            //put sorted array to queue.
+
         return null;
     }
 
