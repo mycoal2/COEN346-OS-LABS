@@ -22,20 +22,41 @@ public class Driver {
         // create the queue of tasks
         List<Task> queue = new ArrayList<Task>();
 
-        // read in the tasks and populate the ready queue        
+        // read in the tasks and populate the ready queue   
+        String choice = args[0].toUpperCase();     
         while ( (schedule = inFile.readLine()) != null) {
             String[] params = schedule.split(",\\s*");
-            queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2])));
+            switch(choice) {
+                case "FCFS":
+                    queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2])));
+                    break;
+                case "SJF":
+                    break;
+                case "PRI":
+                    queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2]), Integer.parseInt(params[3])));
+                    break;
+                case "RR":
+                    
+                    break;
+                case "PRI-RR":
+                    
+                    break;
+                default:
+                    System.err.println("Invalid algorithm");
+                    System.exit(0);
+            }
         }
+        
 
         inFile.close();
         
         Algorithm scheduler = null;
-        String choice = args[0].toUpperCase();
+        //String choice = args[0].toUpperCase();
 
         switch(choice) {
             case "FCFS":
                 scheduler = new FCFS(queue);
+
                 break;
             case "SJF":
                 // scheduler = new SJF(queue);
