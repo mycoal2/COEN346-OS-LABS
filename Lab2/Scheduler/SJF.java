@@ -10,7 +10,7 @@ import static java.lang.Thread.sleep;
 public class SJF implements Algorithm {
 
     List<Task> queue = new ArrayList<Task>();
-    List<Task> readyQueue = new ArrayList<Task>();
+    Queue<Task> readyQueue = new LinkedList<Task>();
     Clock clock1 = new Clock();
 
     public SJF(List<Task> q) {
@@ -57,34 +57,36 @@ public class SJF implements Algorithm {
         queue = new ArrayList<Task>(Arrays.asList(new_arr));
 
         //release each task with clock
-        int i=0;
-        int queue_length= queue.size();
-        int previous_index=0;
-        int next_index=1;
-        while(queue.size()>0)
-        {
-            if(queue.get(i).getArrivalTime()<= clock1.clock && queue.get(i).getArrivalTime()==0)
-            {
+        int i = 0;
+        int queue_length = queue.size();
+        int previous_index = 0;
+        int next_index = 1;
+        while (queue.size() > 0) {
+            if (queue.get(i).getArrivalTime() <= clock1.clock && queue.get(i).getArrivalTime() == 0) {
                 return queue.remove(i);
-
             }
             else {
                 readyQueue.add(queue.remove(i));
-                if(readyQueue.size()>1) {
-                    while (previous_index < readyQueue.size() && next_index < readyQueue.size()) {
-                        if(readyQueue.get(previous_index).getBurst()>readyQueue.get(next_index).getBurst())
-                        {
-                            return readyQueue.remove(next_index);
-                        }
+                while(readyQueue.size()>1)
+                {
+                    Task holder1=readyQueue.remove();
+                    if(readyQueue.peek().getBurst()>holder1.getBurst())
+                    {
+                        readyQueue.add(holder1);
                     }
+                    return readyQueue.remove();
                 }
+
+
             }
 
             i++;
-
         }
-            return null;
+
+        return null;
+
     }
+
 
 
 }
