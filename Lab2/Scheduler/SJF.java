@@ -45,7 +45,7 @@ public class SJF implements Algorithm {
             for (int j = i + 1; j < new_arr.length; j++) {
                 // Checking elements
                 Task temp = null;
-                if (new_arr[j].getArrivalTime() < new_arr[i].getArrivalTime()) {
+                if (new_arr[j].getBurst() < new_arr[i].getBurst()) {
 
                     // Swapping
                     temp = new_arr[i];
@@ -56,31 +56,9 @@ public class SJF implements Algorithm {
         }
         queue = new ArrayList<Task>(Arrays.asList(new_arr));
 
-        //release each task with clock
-        int i = 0;
-        int queue_length = queue.size();
-        int previous_index = 0;
-        int next_index = 1;
-        while (queue.size() > 0) {
-            if (queue.get(i).getArrivalTime() <= clock1.clock && queue.get(i).getArrivalTime() == 0) {
-                return queue.remove(i);
-            }
-            else {
-                readyQueue.add(queue.remove(i));
-                while(readyQueue.size()>1)
-                {
-                    Task holder1=readyQueue.remove();
-                    if(readyQueue.peek().getBurst()>holder1.getBurst())
-                    {
-                        readyQueue.add(holder1);
-                    }
-                    return readyQueue.remove();
-                }
-
-
-            }
-
-            i++;
+        while(queue.size()>0)
+        {
+            return queue.remove(0);
         }
 
         return null;
