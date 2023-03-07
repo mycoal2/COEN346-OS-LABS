@@ -40,7 +40,7 @@ public class Driver {
                     queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2])));
                     break;
                 case "PRI-RR":
-                    queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2]), Integer.parseInt(params[3])));
+                    queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2]), Integer.parseInt(params[3]), params[4]));
                     break;
                 default:
                     System.err.println("Invalid algorithm");
@@ -69,7 +69,7 @@ public class Driver {
                 //scheduler = new RR(queue);
                 break;
             case "PRI-RR":
-                // scheduler = new PriorityRR(queue);
+                scheduler = new PriorityRR(queue);
                 break;
             default:
                 System.err.println("Invalid algorithm");

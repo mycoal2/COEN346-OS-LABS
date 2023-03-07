@@ -76,6 +76,9 @@ package Scheduler;
      public int getArrivalTime() {
         return arrivalTime;
     }
+    public String getGroup() {
+        return group;
+    }
      /**
       * Appropriate setters
       */
