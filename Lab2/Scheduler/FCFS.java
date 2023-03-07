@@ -8,11 +8,15 @@ import static java.lang.Thread.sleep;
 
 public class FCFS implements Algorithm {
     List<Task> queue = new ArrayList<Task>();
+    int numTasks = 0;
+    double avgWait = 0;
+    double avgTurn = 0;
     public FCFS() {
     }
 
     public FCFS(List<Task> q) {
         queue=q;
+        numTasks = queue.size();
         pickNextTask();
     }
 
@@ -30,18 +34,20 @@ public class FCFS implements Algorithm {
                     System.out.println("error1");
                 }
             }
+            avgWait += clock1.clock - temp.getArrivalTime();
             System.out.println("This task has started: " + temp);
             try {
                 sleep(temp.getBurst() * 1000 );
             } catch (Exception e) {
                 System.out.println("error burst");
             }
-
+            avgTurn += clock1.clock - temp.getArrivalTime();
             System.out.println("Task " + temp.getName() + " has finished");
 
         }
         clock1.stopClock();
         System.out.println("All Tasks are finished");
+        System.out.println("Average times: waiting [" + avgWait/numTasks + "] , turnaround: [" + avgTurn/numTasks + "]");
     }
 
     @Override
