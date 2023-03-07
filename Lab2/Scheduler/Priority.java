@@ -1,9 +1,6 @@
 package Scheduler;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import static java.lang.Thread.sleep;
 
 public class Priority implements Algorithm {
@@ -16,41 +13,41 @@ public class Priority implements Algorithm {
 
     public void schedule() {
         clock1.start();
-
-        while(queue.size() > 0 || readyQueue.size() > 0) {
+        while(queue.size() > 0 || readyQueue.size() > 0) {                  
             Task temp = pickNextTask();
-            System.out.println(temp.getName() + " has started");
+            System.out.println("This task has started: " + temp);
             try {
                 sleep(temp.getBurst() * 1000 + 1);
             } catch (Exception e) {
                 System.out.println("error burst");
             }
-            System.out.println(temp.getName() + " has finished");
+            System.out.println("Task " + temp.getName() + " has finished");
         }
-        System.out.println("All Tasks are finished");
         clock1.stopClock();
+        System.out.println("All Tasks are finished");
     }
 
     @Override
     public Task pickNextTask() {
-        while(readyQueue.size()<=0) {
-            for(int i = 0; i<queue.size();i++) {
+        do {                                                            //add to ready queue if arrival time is lower than clock time
+            for(int i = 0; i<queue.size();i++) {                        
                 if(queue.get(i).getArrivalTime() <= clock1.clock) {
-                    readyQueue.add(queue.remove(i));
+                    readyQueue.add(queue.remove(i));                    //remove from the full list and add to ready queue
                     i--;
                 }
             }
-        }
+        } while (readyQueue.size() == 0);
+
         int index = 0;
         int highpriority = -1;
-        for(int i = 0; i<readyQueue.size();i++) {
+
+        for(int i = 0; i<readyQueue.size();i++) {                       //check highest priority in the ready queue
             if(readyQueue.get(i).getPriority() > highpriority) {
                 highpriority = readyQueue.get(i).getPriority();
                 index = i;
             }
         }
-
-        return readyQueue.remove(index);
+        return readyQueue.remove(index);                                //return task with highest priority
     }
 
 

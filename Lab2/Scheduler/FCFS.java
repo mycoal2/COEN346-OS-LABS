@@ -30,18 +30,18 @@ public class FCFS implements Algorithm {
                     System.out.println("error1");
                 }
             }
-            System.out.println(temp.getName() + " has started");
+            System.out.println("This task has started: " + temp);
             try {
                 sleep(temp.getBurst() * 1000 );
             } catch (Exception e) {
                 System.out.println("error burst");
             }
 
-            System.out.println(temp.getName() + " has finished");
+            System.out.println("Task " + temp.getName() + " has finished");
 
         }
-        System.out.println("All Tasks are finished");
         clock1.stopClock();
+        System.out.println("All Tasks are finished");
     }
 
     @Override
@@ -62,7 +62,7 @@ public class FCFS implements Algorithm {
                 }
             }
             // Printing sorted array elements
-            System.out.println(arr[i] + " ");
+            //System.out.println(arr[i] + " ");
         }
 
         queue = new ArrayList<Task>(Arrays.asList(arr));            //put sorted array to queue.

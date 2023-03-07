@@ -31,15 +31,16 @@ public class Driver {
                     queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2])));
                     break;
                 case "SJF":
+                    queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2])));
                     break;
                 case "PRI":
                     queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2]), Integer.parseInt(params[3])));
                     break;
                 case "RR":
-                    
+                    queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2])));
                     break;
                 case "PRI-RR":
-                    
+                    queue.add(new Task(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2]), Integer.parseInt(params[3])));
                     break;
                 default:
                     System.err.println("Invalid algorithm");
@@ -59,7 +60,7 @@ public class Driver {
 
                 break;
             case "SJF":
-                // scheduler = new SJF(queue);
+                scheduler = new SJF(queue);
                 break;
             case "PRI":
                 scheduler = new Priority(queue);
@@ -77,13 +78,6 @@ public class Driver {
 
         // start the scheduler
         scheduler.schedule();
-
-
-
-        // FCFS obj1 = new FCFS();
-        // obj1.schedule();
-
-
     }
     
 }

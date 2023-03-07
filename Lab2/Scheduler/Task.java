@@ -24,6 +24,7 @@ package Scheduler;
      private int priority;
      private int burst;
      private int arrivalTime;
+     private String group;
  
      /**
       * We use an atomic integer to assign each task a unique task id.
@@ -43,6 +44,14 @@ package Scheduler;
         this.burst = burst;
         this.arrivalTime = arrivalTime;
 
+        this.tid = tidAllocator.getAndIncrement();
+    }
+    public Task(String name, int arrivalTime, int burst, int priority, String s) {
+        this.name = name;
+        this.priority = priority;
+        this.burst = burst;
+        this.arrivalTime = arrivalTime;
+        this.group = s;
         this.tid = tidAllocator.getAndIncrement();
     }
  
